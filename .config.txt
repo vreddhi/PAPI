@@ -1,0 +1,21 @@
+[DEFAULT]
+
+[CREDENTIALS]
+client_token = akab-o24twfejrdhyyiwo-m6jn27qxibmp72cr
+client_secret = i/OiO5N1FUs/ZP0EhfSprjnRRggnSK0iwOksVGmAFG0=
+access_token = akab-vs66tet4vlajtvq3-4pb5skc3dusu7axu
+access_hostname = akab-l5hhaloblxofu27k-phc7p37cztzka4jz.luna.akamaiapis.net
+dest_client_token = akab-kvk27hlxtngjd34c-czbkn76purfl2765
+dest_client_secret = 6QEES8L7GRhmkAFVvHHh/o71OX8gShTZZ0hn+XDv0eA=
+dest_access_token = akab-j776c3d2r6naytd4-ijmnvj4wtcaajmak
+dest_access_hostname = akab-zdztncacl54c2xem-5zzjnbsv3m7llqtl.luna.akamaiapis.net
+
+[PROPERTY]
+property_name = app-ssl-master.bestbuy.com_pm
+version = 2
+notes = This is test activation
+emails = vbhat@akamai.com
+dest_property_name = www.vbhat.com
+dest_version = 3
+dest_notes = This is test activation
+dest_emails = vbhat@akamai.com

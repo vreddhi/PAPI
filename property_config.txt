@@ -1,0 +1,24 @@
+[RULE_ORDER]
+Order = CACHING, REDIRECT
+
+[CACHING]
+name  = Caching
+child_rule = Specific_TTL
+criteria_names = requestCookie_1,path_1
+requestCookie_1 = cookieName, matchOperator, value
+requestCookie_1['cookieName'] = "test|stage|prod"
+requestCookie_1['matchOperator'] = "test|stage|prod"
+requestCookie_1['value'] = "ct-app-a|s-app-a|p-app-a"
+path_1 = values
+path_1['values'] ="/images/test/path|/images/test/path|/images/test/path"
+
+[REDIRECT]
+name  = Redirect
+child_rule = Specific_TTL
+criteria_names = requestCookie_1,path_1
+requestCookie_1 = cookieName, matchOperator, value
+requestCookie_1['cookieName'] = "test|stage|prod"
+requestCookie_1['matchOperator'] = "test|stage|prod"
+requestCookie_1['value'] = "ct-app-a|s-app-a|p-app-a"
+path_1 = values
+path_1['values'] ="/images/test/path|/images/test/path|/images/test/path"
