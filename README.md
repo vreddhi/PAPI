@@ -21,11 +21,11 @@ This file does the job of reading the credentials, establish connections and inv
 
 **How to Run the program**
 
- 1. python3 main.py -h (This will give all options available)
-
- 2. python3 main.py -copy (Copied rules from source config to destination configuration)
- 3. python3 main.py -download (Downloads the rules and displays in console)
- 4. python3 main.py - activate (Activates the configuration)
+ - python3 main.py -h (This will give all options available)    
+ - python3 main.py -copy (Copied rules from source config to destination
+   configuration) 
+ - python3 main.py -download (Downloads the rules and displays in console) 
+ - python3 main.py - activate (Activates the configuration)
 
 **NOTE** : The cnofiguration details are read from .config.txt file. Contact developer to know the format.
 
