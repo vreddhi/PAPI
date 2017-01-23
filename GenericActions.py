@@ -1,12 +1,16 @@
 import json
 
 class GenericActions(object):
+        """All basic operations that can be performed using PAPI """
         final_response = "NULL" #This variable holds the SUCCESS or FAILURE reason
         headers = {
             "Content-Type": "application/json"
         }
 
         def getPropertyInfo(self,session,propertyObject,groupsInfo):
+            """
+            Function to fetch property ID and update the proerty object with corresponding values
+            """
             for eachDataGroup in groupsInfo.json()['groups']['items']:
                 try:
                     contractId = [eachDataGroup['contractIds'][0]]
@@ -36,6 +40,9 @@ class GenericActions(object):
 
 
         def getGroups(self,session,propertyObject):
+            """
+            Function to fetch all the groups under the contract
+            """
             groupUrl = 'https://' + propertyObject.access_hostname + '/papi/v0/groups/'
             groupResponse = session.get(groupUrl)
             if groupResponse.status_code == 200:
@@ -45,6 +52,9 @@ class GenericActions(object):
                 self.final_response = "FAILURE"
 
         def getPropertyRules(self,session,propertyObject):
+            """
+            Function to download rules from a property
+            """
             rulesUrl = 'https://' + propertyObject.access_hostname  + '/papi/v0/properties/' + propertyObject.propertyId +'/versions/'+str(propertyObject.version)+'/rules/?contractId='+propertyObject.contractId+'&groupId='+propertyObject.groupId
             rulesResponse = session.get(rulesUrl)
             if rulesResponse.status_code == 200:
@@ -54,6 +64,9 @@ class GenericActions(object):
             return rulesResponse
 
         def createVersion(self,session,propertyObject,baseVersion):
+            """
+            Function to create or checkout a version of property
+            """
             newVersionData = """
             {
                 "createFromVersion": %s
@@ -66,6 +79,9 @@ class GenericActions(object):
             return createVersionResponse
 
         def getVersion(self,session,propertyObject,activeOn="LATEST"):
+            """
+            Function to get the latest or staging or production version
+            """
             if activeOn == "LATEST":
                 VersionUrl = 'https://' + propertyObject.access_hostname + '/papi/v0/properties/' + propertyObject.propertyId + '/versions/latest?contractId=' + propertyObject.contractId +'&groupId=' + propertyObject.groupId
             elif activeOn == "STAGING":
@@ -76,10 +92,12 @@ class GenericActions(object):
             return VersionResponse
 
         def uploadRules(self,session,propertyObject,updatedData):
+            """
+            Function to upload rules to a property
+            """
             updateurl = 'https://' + propertyObject.access_hostname  + '/papi/v0/properties/'+ propertyObject.propertyId + "/versions/" + str(propertyObject.version) + '/rules/' + '?contractId=' + propertyObject.contractId +'&groupId=' + propertyObject.groupId
             updatedData = json.dumps(updatedData)
             updateResponse = session.put(updateurl,data=updatedData,headers=self.headers)
-            print(str(updateResponse.status_code))
             if updateResponse.status_code == 403:
                 print("Property cannot be updated due to reasons")
             elif updateResponse.status_code == 404:
@@ -90,6 +108,9 @@ class GenericActions(object):
             return updateResponse
 
         def activateConfiguration(self,session,propertyObject):
+            """
+            Function to activate a configuration or property
+            """
             emails = []
             emails.append(propertyObject.emails)
             emails = json.dumps(emails)
@@ -129,8 +150,10 @@ class GenericActions(object):
                             print(updatedactivationResponse.json()['activationLink'])
                             self.final_response = "SUCCESS"
                         else:
+                            self.final_response = "FAILURE"
                             print(updatedactivationResponse.json())
                 elif activationResponse.status_code == 422 and activationResponse.json()['detail'].find('version already activated'):
                     print("Property version already activated")
             except KeyError:
+                self.final_response = "FAILURE"
                 print("Looks like there is some error in configuration\n")
