@@ -20,17 +20,20 @@ This class defines the basic properties of a configuration or akamai property.
 This file does the job of reading the credentials, establish connections and invoke methods from GenericActions.py.
 
 **How to Run the program**
-1. python3 main.py -h (This will give all options available)
-2. python3 main.py -copy (Copied rules from source config to destination configuration)
-3. python3 main.py -download (Downloads the rules and displays in console)
-4. python3 main.py - activate (Activates the configuration)
+
+ 1. python3 main.py -h (This will give all options available)
+
+ 2. python3 main.py -copy (Copied rules from source config to destination configuration)
+ 3. python3 main.py -download (Downloads the rules and displays in console)
+ 4. python3 main.py - activate (Activates the configuration)
+
 **NOTE** : The cnofiguration details are read from .config.txt file. Contact developer to know the format.
 
 **Steps to use OR brief understanding :**
 
- 1. Create and object of type PropertyDetails. This initialises the
+ 5. Create and object of type PropertyDetails. This initialises the
     necessary property details. 
- 2. Create an object of type GenericActions,which should be used to call methods in it. 
- 3. Use the methods/functions defined in GenericActions in desired order to achieve the custom functionality. 
+ 6. Create an object of type GenericActions,which should be used to call methods in it. 
+ 7. Use the methods/functions defined in GenericActions in desired order to achieve the custom functionality. 
 
 ***NOTE:*** You will need PropertyDetails Object in all methods, as it operates on attributes     of property.
