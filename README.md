@@ -22,7 +22,7 @@ This file does the job of reading the credentials, establish connections and inv
 **How to Run the program**
 
  - python3 main.py -h (This will give all options available)    
- - python3 main.py -copy (Copied rules from source config to destination
+ - python3 main.py -copy (Copies rules from source config to destination
    configuration) 
  - python3 main.py -download (Downloads the rules and displays in console) 
  - python3 main.py - activate (Activates the configuration)
